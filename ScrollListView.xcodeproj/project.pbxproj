@@ -10,6 +10,7 @@
 		BA02398E1BF0E01A0029B062 /* ScrollListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02398D1BF0E01A0029B062 /* ScrollListView.m */; };
 		BA0239911BF0E11A0029B062 /* ScrollListCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0239901BF0E11A0029B062 /* ScrollListCellHeaderView.m */; };
 		BA0239981BF0E17C0029B062 /* ScrollListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0239971BF0E17C0029B062 /* ScrollListCellView.m */; };
+		BA02399C1BF0ED790029B062 /* NSIndexPath+ScrollListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02399B1BF0ED790029B062 /* NSIndexPath+ScrollListView.m */; };
 		BA0DD1ED1BF0CC1A00E93CB6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0DD1EC1BF0CC1A00E93CB6 /* AppDelegate.m */; };
 		BA0DD1F01BF0CC1A00E93CB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0DD1EF1BF0CC1A00E93CB6 /* main.m */; };
 		BA0DD1F21BF0CC1A00E93CB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA0DD1F11BF0CC1A00E93CB6 /* Assets.xcassets */; };
@@ -40,6 +41,8 @@
 		BA0239901BF0E11A0029B062 /* ScrollListCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollListCellHeaderView.m; sourceTree = "<group>"; };
 		BA0239961BF0E17C0029B062 /* ScrollListCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollListCellView.h; sourceTree = "<group>"; };
 		BA0239971BF0E17C0029B062 /* ScrollListCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollListCellView.m; sourceTree = "<group>"; };
+		BA02399A1BF0ED790029B062 /* NSIndexPath+ScrollListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+ScrollListView.h"; sourceTree = "<group>"; };
+		BA02399B1BF0ED790029B062 /* NSIndexPath+ScrollListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+ScrollListView.m"; sourceTree = "<group>"; };
 		BA0DD1E81BF0CC1A00E93CB6 /* ScrollListView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollListView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0DD1EB1BF0CC1A00E93CB6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA0DD1EC1BF0CC1A00E93CB6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		BA02398B1BF0DF920029B062 /* ScrollListView */ = {
 			isa = PBXGroup;
 			children = (
+				BA0239991BF0ED520029B062 /* CateGory */,
 				BA0239951BF0E1320029B062 /* ScrollListCell */,
 				BA02398C1BF0E01A0029B062 /* ScrollListView.h */,
 				BA02398D1BF0E01A0029B062 /* ScrollListView.m */,
@@ -95,6 +99,15 @@
 				BA0239971BF0E17C0029B062 /* ScrollListCellView.m */,
 			);
 			name = ScrollListCell;
+			sourceTree = "<group>";
+		};
+		BA0239991BF0ED520029B062 /* CateGory */ = {
+			isa = PBXGroup;
+			children = (
+				BA02399A1BF0ED790029B062 /* NSIndexPath+ScrollListView.h */,
+				BA02399B1BF0ED790029B062 /* NSIndexPath+ScrollListView.m */,
+			);
+			name = CateGory;
 			sourceTree = "<group>";
 		};
 		BA0DD1DF1BF0CC1A00E93CB6 = {
@@ -270,6 +283,7 @@
 				BA02398E1BF0E01A0029B062 /* ScrollListView.m in Sources */,
 				BA0DD1F01BF0CC1A00E93CB6 /* main.m in Sources */,
 				BA0DD1ED1BF0CC1A00E93CB6 /* AppDelegate.m in Sources */,
+				BA02399C1BF0ED790029B062 /* NSIndexPath+ScrollListView.m in Sources */,
 				BA0239981BF0E17C0029B062 /* ScrollListCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

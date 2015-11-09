@@ -14,6 +14,7 @@
  
 
 #import <Cocoa/Cocoa.h>
+#import "NSIndexPath+ScrollListView.h"
 
 @class ScrollListCellView;
 
