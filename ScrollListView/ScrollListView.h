@@ -18,11 +18,22 @@
 
 @class ScrollListCellView;
 
+@protocol ScrollListViewDataSource, ScrollListViewDelegate;
+
 @interface ScrollListView : NSView
 
+@property (nonatomic, weak) id<ScrollListViewDataSource> dataSource;
+@property (nonatomic, weak) id<ScrollListViewDelegate> delegate;
+
+@property (nonatomic, strong) NSView *scrollListHeaderView; //accessory view for above content. default is nil
+@property (nonatomic, strong) NSView *scrollListFooterView; //accessory view below content. default is nil
+
+/**
+ * Used by the delegate to acquire an already allocated cell. allocate a new one if return nil.
+ */
+- (ScrollListCellView *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+
 @end
-
-
 
 @protocol ScrollListViewDataSource <NSObject>
 

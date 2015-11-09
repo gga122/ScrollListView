@@ -7,6 +7,13 @@
 //
 
 #import "ScrollListView.h"
+#import "ScrollListDocumentView.h"
+
+@interface ScrollListView ()
+
+@property (nonatomic, strong) ScrollListDocumentView *mDocumentView;
+
+@end
 
 @implementation ScrollListView
 
