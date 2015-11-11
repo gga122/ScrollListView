@@ -7,18 +7,36 @@
 //
 
 #import "ScrollListCellView.h"
+#import "ScrollListCellViewConstant.h"
 
 @class ScrollListViewCellGroup;
 
-@interface ScrollListCellView ()
+@interface ScrollListCellView () {
+    NSString *_mIdentifier;
+}
 
 @property (nonatomic, weak) ScrollListViewCellGroup *mGroup;
+@property (nonatomic, assign) ScrollListCellViewState state;
 
 @end
 
 @implementation ScrollListCellView
 
+- (instancetype)initWithReuseIdentifier:(NSString *)identifier {
+    if (!identifier) {
+        return nil;
+    }
+    if (self = [super initWithFrame:NSZeroRect]) {
+        _mIdentifier = identifier;
+    }
+    return self;
+}
 
+#pragma mark - Public Property
+
+- (NSString *)identifier {
+    return _mIdentifier;
+}
 
 @end
 

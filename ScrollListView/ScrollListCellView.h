@@ -16,7 +16,9 @@
 
 @interface ScrollListCellView : NSView
 
+- (instancetype)initWithReuseIdentifier:(NSString *)identifier;
 
-
+@property (nonatomic, copy, readonly) NSString *identifier;
 
 @end
+

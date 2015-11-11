@@ -12,7 +12,7 @@
 
 @interface ScrollListViewCellGroup : NSObject
 
-- (id)initWithIdentifer:(NSString *)identifier;
+- (instancetype)initWithIdentifer:(NSString *)identifier;
 
 @property (nonatomic, copy, readonly) NSString *identifier;
 
@@ -44,5 +44,6 @@
  * Request a cell if prepared for reuse. Return nil when no cells prepared.
  */
 - (ScrollListCellView *)preparedForReuseCell;
+
 
 @end

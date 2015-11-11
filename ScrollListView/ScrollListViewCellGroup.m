@@ -29,7 +29,7 @@
 
 #pragma mark - Intialize
 
-- (id)initWithIdentifer:(NSString *)identifier {
+- (instancetype)initWithIdentifer:(NSString *)identifier {
     NSParameterAssert(identifier);
     if (self = [super init]) {
         _identifier = identifier;

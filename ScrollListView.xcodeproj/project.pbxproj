@@ -61,6 +61,7 @@
 		BA0DD1F61BF0CC1A00E93CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA0DD1FB1BF0CC1A00E93CB6 /* ScrollListViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollListViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0DD2061BF0CC1A00E93CB6 /* ScrollListViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollListViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAFAFF131BF394E1008C1FFD /* ScrollListCellViewConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollListCellViewConstant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +92,7 @@
 		BA02398B1BF0DF920029B062 /* ScrollListView */ = {
 			isa = PBXGroup;
 			children = (
+				BAFAFF141BF394E9008C1FFD /* Common */,
 				BA0239A01BF0FADD0029B062 /* ViewContainer */,
 				BA0239991BF0ED520029B062 /* CateGory */,
 				BA0239951BF0E1320029B062 /* ScrollListCell */,
@@ -171,6 +173,14 @@
 				BA0DD1EF1BF0CC1A00E93CB6 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BAFAFF141BF394E9008C1FFD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BAFAFF131BF394E1008C1FFD /* ScrollListCellViewConstant.h */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
