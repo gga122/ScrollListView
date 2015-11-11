@@ -7,9 +7,9 @@
 //
 
 /**
- * Single Cell For ScrollListView
- * Include HeaderView AND BodyView
- * 
+ * Single CellView For ScrollListView
+ * You should subclass this if you want to design your own cellView.
+ * You should try you best to reuse instance of this class or subclass of this class.
  */
 
 #import <Cocoa/Cocoa.h>

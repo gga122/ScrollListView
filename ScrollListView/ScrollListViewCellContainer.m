@@ -17,15 +17,34 @@
 
 @implementation ScrollListViewCellContainer
 
-#pragma mark - Private Methods
+- (NSMutableDictionary *)mGroups {
+    if (!_mGroups) {
+        _mGroups = [NSMutableDictionary dictionary];
+    }
+    return _mGroups;
+}
 
-- (ScrollListViewCellGroup *)dequeCellGroupWithIdentifier:(NSString *)identifier {
-    if (!identifier) {
+@end
+
+@implementation ScrollListViewCellContainer (Extend)
+
+- (ScrollListViewCellGroup *)cellGroupWithIdentifier:(NSString *)identifier {
+    if (identifier.length == 0 || self.mGroups.count == 0) {
         return nil;
     }
     return [self.mGroups objectForKey:identifier];
 }
 
+- (ScrollListCellView *)preparedForReuseCellWithIdentifier:(NSString *)identifier {
+    ScrollListViewCellGroup *tGroup = [self cellGroupWithIdentifier:identifier];
+    if (!tGroup) {
+        return nil;
+    }
+    return [tGroup preparedForReuseCell];
+}
 
+- (void)resetContainer {
+    [self.mGroups removeAllObjects];
+}
 
 @end

@@ -19,6 +19,14 @@
 
 @implementation ScrollListViewCellGroup
 
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *tDesc = [NSMutableString stringWithString:[super description]];
+    [tDesc appendString:[NSString stringWithFormat:@"Cells:%ld Using:%ld Reuse:%ld", self.mCells.count, self.mUsingCells.count, self.mReuseCells.count]];
+    return tDesc;
+}
+
 #pragma mark - Intialize
 
 - (id)initWithIdentifer:(NSString *)identifier {
@@ -47,6 +55,20 @@
     return _mCells;
 }
 
+- (NSMutableArray *)mUsingCells {
+    if (!_mUsingCells) {
+        _mUsingCells = [NSMutableArray array];
+    }
+    return _mUsingCells;
+}
+
+- (NSMutableArray *)mReuseCells {
+    if (!_mReuseCells) {
+        _mReuseCells = [NSMutableArray array];
+    }
+    return _mReuseCells;
+}
+
 @end
 
 @implementation ScrollListViewCellGroup (Extend)
@@ -60,7 +82,9 @@
 }
 
 - (void)resetGroup {
-    
+    [self.mUsingCells removeAllObjects];
+    [self.mReuseCells removeAllObjects];
+    [self.mCells removeAllObjects];
 }
 
 - (ScrollListCellView *)preparedForReuseCell {

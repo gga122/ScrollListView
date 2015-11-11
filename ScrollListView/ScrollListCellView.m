@@ -8,8 +8,18 @@
 
 #import "ScrollListCellView.h"
 
+@class ScrollListViewCellGroup;
+
+@interface ScrollListCellView ()
+
+@property (nonatomic, weak) ScrollListViewCellGroup *mGroup;
+
+@end
+
 @implementation ScrollListCellView
 
 
 
 @end
+
+
