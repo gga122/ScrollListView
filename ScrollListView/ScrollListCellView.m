@@ -62,6 +62,7 @@
         self.mContentView = tContentView;
         self.mIdentifier = identifier;
     }
+    
     return self;
 }
 
