@@ -10,6 +10,7 @@
  * Single CellView For ScrollListView
  * You should subclass this if you want to design your own cellView.
  * You should try you best to reuse instance of this class or subclass of this class.
+ * You should add your customView to 'ContentView'
  */
 
 #import <Cocoa/Cocoa.h>
@@ -19,6 +20,8 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)identifier;
 
 @property (nonatomic, copy, readonly) NSString *identifier;
+
+@property (nonatomic, strong) NSView *contentView;
 
 @end
 

@@ -9,12 +9,25 @@
 #import "ScrollListCellView.h"
 #import "ScrollListCellViewConstant.h"
 
+/**
+ * View - Tree
+ * 
+ * ContentView          -----------Top
+ * ContainerView        -----------Mid
+ * CellView             -----------Bottom
+ *
+ * ContentView is designed for show detail view.
+ * ContainerView is designed for 'Animation' and 'Cell Actions'
+ */
+
 @class ScrollListViewCellGroup;
 
-@interface ScrollListCellView () {
-    NSString *_mIdentifier;
-}
+@interface ScrollListCellView ()
 
+@property (nonatomic, strong) NSView *mContainerView;
+@property (nonatomic, strong) NSView *mContentView;
+
+@property (nonatomic, strong) NSString *mIdentifier;
 @property (nonatomic, weak) ScrollListViewCellGroup *mGroup;
 @property (nonatomic, assign) ScrollListCellViewState state;
 
@@ -27,15 +40,22 @@
         return nil;
     }
     if (self = [super initWithFrame:NSZeroRect]) {
-        _mIdentifier = identifier;
+        self.mIdentifier = identifier;
     }
     return self;
 }
 
+
+
+
 #pragma mark - Public Property
 
 - (NSString *)identifier {
-    return _mIdentifier;
+    return self.mIdentifier;
+}
+
+- (NSView *)contentView {
+    return self.mContentView;
 }
 
 @end

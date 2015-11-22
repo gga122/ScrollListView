@@ -11,6 +11,7 @@
 
 @interface ScrollListView ()
 
+@property (nonatomic, strong) NSScrollView *mScrollView;
 @property (nonatomic, strong) ScrollListDocumentView *mDocumentView;
 
 @end
