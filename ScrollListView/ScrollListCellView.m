@@ -36,10 +36,30 @@
 @implementation ScrollListCellView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)identifier {
-    if (!identifier) {
-        return nil;
-    }
     if (self = [super initWithFrame:NSZeroRect]) {
+        
+        NSView *tContainerView = [[NSView alloc] initWithFrame:NSZeroRect];
+        NSView *tContentView = [[NSView alloc] initWithFrame:NSZeroRect];
+        [tContainerView addSubview:tContentView];
+        [self addSubview:tContainerView];
+        
+        //Use AutoLayout For SubViews
+        tContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+        tContentView.translatesAutoresizingMaskIntoConstraints = NO;
+        NSDictionary *tViewDic = @{@"containerView": tContainerView, @"contentView": tContentView};
+        
+        NSArray *tContentViewHorizonLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:nil views:tViewDic];
+        NSArray *tContentViewVerticalLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[contentView]-0-|" options:0 metrics:nil views:tViewDic];
+        [tContentView.superview addConstraints:tContentViewHorizonLayout];
+        [tContentView.superview addConstraints:tContentViewVerticalLayout];
+        
+        NSArray *tContainerViewHorizonLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[containerView]-0-|" options:0 metrics:nil views:tViewDic];
+        NSArray *tContainerViewVerticalLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[containerView]-0-|" options:0 metrics:nil views:tViewDic];
+        [tContainerView.superview addConstraints:tContainerViewHorizonLayout];
+        [tContainerView.superview addConstraints:tContainerViewVerticalLayout];
+        
+        self.mContainerView = tContainerView;
+        self.mContentView = tContentView;
         self.mIdentifier = identifier;
     }
     return self;
