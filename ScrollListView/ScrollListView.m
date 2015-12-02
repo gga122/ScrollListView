@@ -49,7 +49,7 @@ static const float kScrollListViewLowLevelProprity = 750;
     if (self =[super initWithFrame:frameRect]) {
         NSRect tRect = NSMakeRect(0, 0, NSWidth(frameRect), NSHeight(frameRect));
         
-        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:tRect];
+        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:CGRectMake(0, 0, 200, 2000)];
         tDocumentView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
         self.mDocumentView = tDocumentView;
         
@@ -66,12 +66,27 @@ static const float kScrollListViewLowLevelProprity = 750;
         [tScrollView.superview addConstraint:tScrollViewBottomLayout];
         NSArray *tScrollHorizonLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:nil views:viewDic];
         [tScrollView.superview addConstraints:tScrollHorizonLayout];
+        
         tScrollView.hasVerticalScroller = YES;
         tScrollView.scrollerStyle = NSScrollerStyleOverlay;
         tScrollView.documentView = tDocumentView;
+        
+        tScrollView.contentView.postsFrameChangedNotifications = YES;   //For Scroll Callback
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRecvScrollViewDidScrollNotification:) name:NSViewBoundsDidChangeNotification object:tScrollView];
+        
         self.mScrollView = tScrollView;
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - ScrollView Notification
+
+- (void)onRecvScrollViewDidScrollNotification:(NSNotification *)noti {
+    NSLog(@"scroll: %@", NSStringFromRect(self.mScrollView.contentView.bounds));
 }
 
 #pragma mark - FooterView and HeaderView
