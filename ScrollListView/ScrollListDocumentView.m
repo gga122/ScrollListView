@@ -10,4 +10,9 @@
 
 @implementation ScrollListDocumentView
 
+- (void)drawRect:(NSRect)dirtyRect {
+    [[NSColor yellowColor] set];
+    NSRectFill(dirtyRect);
+}
+
 @end

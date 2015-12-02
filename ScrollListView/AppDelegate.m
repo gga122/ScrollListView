@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ScrollListView.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    ScrollListView *listView = [[ScrollListView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    [self.window.contentView addSubview:listView];
+    listView.frame = CGRectMake(200, 200, 400, 700);
     // Insert code here to initialize your application
 }
 

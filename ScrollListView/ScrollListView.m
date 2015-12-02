@@ -42,35 +42,36 @@ static const float kScrollListViewLowLevelProprity = 750;
 #pragma mark - Overridden
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
-    if (self = [super initWithFrame:frameRect]) {
+    if (self =[super initWithFrame:frameRect]) {
+        NSRect tRect = NSMakeRect(0, 0, NSWidth(frameRect), NSHeight(frameRect));
         
-        NSScrollView *tScrollView = [[NSScrollView alloc] initWithFrame:NSZeroRect];
-        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:NSZeroRect];
-        tScrollView.documentView = tDocumentView;
+        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:tRect];
+        tDocumentView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        self.mDocumentView = tDocumentView;
+        
+        NSScrollView *tScrollView = [[NSScrollView alloc] initWithFrame:tRect];
         [self addSubview:tScrollView];
-        
-        //Use AutoLayout
         tScrollView.translatesAutoresizingMaskIntoConstraints = NO;
-        NSDictionary *tViewDic = @{@"scrollView": tScrollView};
-        NSArray *tScrollViewHorizonLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:nil views:tViewDic];
+        
+        NSDictionary *viewDic = @{@"scrollView": tScrollView, @"documentView": tDocumentView};
         NSLayoutConstraint *tScrollViewTopLayout = [NSLayoutConstraint constraintWithItem:tScrollView.superview attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:tScrollView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
         tScrollViewTopLayout.priority = kScrollListViewLowLevelProprity;    //Low Level Priority Option For HeaderView
+        [tScrollView.superview addConstraint:tScrollViewTopLayout];
         NSLayoutConstraint *tScrollViewBottomLayout = [NSLayoutConstraint constraintWithItem:tScrollView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:tScrollView.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
         tScrollViewBottomLayout.priority = kScrollListViewLowLevelProprity; //Low Level Priority Option For FooterView
-        
-        [tScrollView.superview addConstraints:tScrollViewHorizonLayout];
-        [tScrollView.superview addConstraint:tScrollViewTopLayout];
         [tScrollView.superview addConstraint:tScrollViewBottomLayout];
-        
-        self.mScrollViewTopLayout = tScrollViewTopLayout;
-        self.mScrollViewBottomLayout = tScrollViewBottomLayout;
-        
-        self.mDocumentView = tDocumentView;
+        NSArray *tScrollHorizonLayout = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:nil views:viewDic];
+        [tScrollView.superview addConstraints:tScrollHorizonLayout];
+        tScrollView.hasVerticalScroller = YES;
+        tScrollView.scrollerStyle = NSScrollerStyleOverlay;
+        tScrollView.documentView = tDocumentView;
         self.mScrollView = tScrollView;
     }
-    
     return self;
 }
 
+- (void)dealloc {
+    
+}
 
 @end
