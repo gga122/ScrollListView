@@ -33,6 +33,11 @@
  */
 - (ScrollListCellView *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
+/**
+ * reload data and refresh view
+ */
+- (void)reloadData;
+
 @end
 
 @protocol ScrollListViewDataSource <NSObject>
@@ -56,8 +61,6 @@
  * Tell ScrollListView Section Count, default is '1'
  */
 - (NSInteger)numberOfSectionsInTableView:(ScrollListView *)scrollListView;
-
-
 
 @end
 

@@ -66,9 +66,6 @@
     return self;
 }
 
-
-
-
 #pragma mark - Public Property
 
 - (NSString *)identifier {
@@ -80,5 +77,3 @@
 }
 
 @end
-
-

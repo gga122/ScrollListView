@@ -8,6 +8,7 @@
 
 #import "ScrollListView.h"
 #import "ScrollListDocumentView.h"
+#import "ScrollListViewCellContainer.h"
 
 /**
  * View Tree
@@ -30,14 +31,16 @@ static const float kScrollListViewLowLevelProprity = 750;
 @property (nonatomic, strong) ScrollListDocumentView *mDocumentView;
 
 /**
- * Used for control scrollView 'top' edge and 'bottom' edge to superView
+ * DocumentView Context
  */
-@property (nonatomic, strong) NSLayoutConstraint *mScrollViewTopLayout;
-@property (nonatomic, strong) NSLayoutConstraint *mScrollViewBottomLayout;
+@property (nonatomic, assign) CGFloat mDocumentViewHeight;
+@property (nonatomic, assign) NSUInteger mSectionCount;
 
 /**
  * Container for reuse Cells
  */
+@property (nonatomic, strong) ScrollListViewCellContainer *mCellContainer;
+
 
 @end
 
@@ -72,7 +75,7 @@ static const float kScrollListViewLowLevelProprity = 750;
         tScrollView.documentView = tDocumentView;
         
         tScrollView.contentView.postsFrameChangedNotifications = YES;   //For Scroll Callback
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRecvScrollViewDidScrollNotification:) name:NSViewBoundsDidChangeNotification object:tScrollView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRecvScrollViewDidScrollNotification:) name:NSViewBoundsDidChangeNotification object:tScrollView.contentView];
         
         self.mScrollView = tScrollView;
     }
@@ -83,10 +86,35 @@ static const float kScrollListViewLowLevelProprity = 750;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - DataSource / Delegate
+
+- (void)setDataSource:(id<ScrollListViewDataSource>)dataSource {
+    if (_dataSource != dataSource) {
+        _dataSource = dataSource;
+        _mSectionCount = 1;
+        if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+            self.mSectionCount = [_dataSource numberOfSectionsInTableView:self];
+        }
+    }
+}
+
+
+
+
 #pragma mark - ScrollView Notification
 
 - (void)onRecvScrollViewDidScrollNotification:(NSNotification *)noti {
-    NSLog(@"scroll: %@", NSStringFromRect(self.mScrollView.contentView.bounds));
+    CGFloat height = NSHeight(self.mDocumentView.bounds);
+    NSLog(@"%f", height - self.mScrollView.contentView.bounds.origin.y - self.mScrollView.contentView.bounds.size.height);
+}
+
+#pragma mark - Queue
+
+- (ScrollListCellView *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
+    if (!identifier) {
+        return nil;
+    }
+    return [self.mCellContainer preparedForReuseCellWithIdentifier:identifier];
 }
 
 #pragma mark - FooterView and HeaderView
@@ -135,5 +163,13 @@ static const float kScrollListViewLowLevelProprity = 750;
     }
 }
 
+#pragma mark - Private Property
+
+- (void)setMSectionCount:(NSUInteger)mSectionCount {
+    if (_mSectionCount != mSectionCount) {
+        _mSectionCount = mSectionCount;
+        
+    }
+}
 
 @end

@@ -8,8 +8,8 @@
 
 #import "ScrollListCellHeaderView.h"
 
+NSString * const kDefaultScrollListCellHeaderViewIdentifier = @"DefaultScrollListCellHeaderViewIdentifier";
+
 @implementation ScrollListCellHeaderView
-
-
 
 @end
