@@ -51,9 +51,9 @@ static const float kScrollListViewLowLevelProprity = 750;
 - (instancetype)initWithFrame:(NSRect)frameRect {
     if (self =[super initWithFrame:frameRect]) {
         NSRect tRect = NSMakeRect(0, 0, NSWidth(frameRect), NSHeight(frameRect));
-        
-        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:CGRectMake(0, 0, 200, 2000)];
-        tDocumentView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+
+        ScrollListDocumentView *tDocumentView = [[ScrollListDocumentView alloc] initWithFrame:tRect];
+        tDocumentView.autoresizingMask = NSViewNotSizable;
         self.mDocumentView = tDocumentView;
         
         NSScrollView *tScrollView = [[NSScrollView alloc] initWithFrame:tRect];
@@ -73,18 +73,13 @@ static const float kScrollListViewLowLevelProprity = 750;
         tScrollView.hasVerticalScroller = YES;
         tScrollView.scrollerStyle = NSScrollerStyleOverlay;
         tScrollView.documentView = tDocumentView;
-        
-        tScrollView.contentView.postsFrameChangedNotifications = YES;   //For Scroll Callback
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRecvScrollViewDidScrollNotification:) name:NSViewBoundsDidChangeNotification object:tScrollView.contentView];
+        [tDocumentView registerViewNotifications];
         
         self.mScrollView = tScrollView;
     }
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 #pragma mark - DataSource / Delegate
 
@@ -96,16 +91,6 @@ static const float kScrollListViewLowLevelProprity = 750;
             self.mSectionCount = [_dataSource numberOfSectionsInTableView:self];
         }
     }
-}
-
-
-
-
-#pragma mark - ScrollView Notification
-
-- (void)onRecvScrollViewDidScrollNotification:(NSNotification *)noti {
-    CGFloat height = NSHeight(self.mDocumentView.bounds);
-    NSLog(@"%f", height - self.mScrollView.contentView.bounds.origin.y - self.mScrollView.contentView.bounds.size.height);
 }
 
 #pragma mark - Queue
