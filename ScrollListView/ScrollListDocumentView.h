@@ -15,4 +15,7 @@
 
 @interface ScrollListDocumentView : NSView
 
+- (void)registerViewNotifications;
+
+
 @end
