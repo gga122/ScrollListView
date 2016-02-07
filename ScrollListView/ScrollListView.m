@@ -93,6 +93,12 @@ static const float kScrollListViewLowLevelProprity = 750;
     }
 }
 
+#pragma mark - Reload
+
+- (void)reloadData {
+    
+}
+
 #pragma mark - Queue
 
 - (ScrollListCellView *)dequeueReusableCellWithIdentifier:(NSString *)identifier {

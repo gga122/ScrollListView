@@ -14,12 +14,15 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "ScrollListCellViewConstant.h"
 
 @interface ScrollListCellView : NSView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)identifier; //DESIGNATED_INITIALIZER
 
 @property (nonatomic, copy, readonly) NSString *identifier;
+
+@property (nonatomic, assign, readonly) ScrollListCellViewState state;
 
 @property (nonatomic, strong) NSView *contentView;
 

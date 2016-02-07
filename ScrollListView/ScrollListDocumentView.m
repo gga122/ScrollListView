@@ -8,6 +8,8 @@
 
 #import "ScrollListDocumentView.h"
 
+static CGFloat const kScrollListDocumentViewMaxBufferFactor = 2.5;
+
 @interface ScrollListDocumentView ()
 
 @property (nonatomic, assign) CGFloat mWidth;
@@ -17,30 +19,52 @@
 
 @implementation ScrollListDocumentView
 
+#pragma mark - Overridden
 
 - (BOOL)isFlipped {
     return YES;
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unRegisterViewNotifications];
 }
 
-- (void)registerViewNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSViewFrameDidChangeNotification object:self.enclosingScrollView];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSViewBoundsDidChangeNotification object:self];
+#pragma mark - Calculate
 
+- (void)calculateDocumentViewHeight {
+    
+}
+
+#pragma mark - Layout
+
+- (void)layoutCellViews {
+    
+}
+
+#pragma mark - Public Method
+
+- (void)registerViewNotifications {
+    [self unRegisterViewNotifications];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boundsDidChanged:) name:NSViewBoundsDidChangeNotification object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enclosingScrollViewFrameDidChanged:) name:NSViewFrameDidChangeNotification object:self.enclosingScrollView];
+    NSLog(@"Document View Notifications Register");
+}
+
+- (void)unRegisterViewNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSViewFrameDidChangeNotification object:self.enclosingScrollView];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSViewBoundsDidChangeNotification object:self];
+    NSLog(@"Document View Notifications Unregister");
 }
 
 #pragma mark - Frame/Bounds Changed Notification
 
 - (void)boundsDidChanged:(NSNotification *)noti {
-    
+    NSLog(@"ScrollListDocumentView Bounds Did Changed");
 }
 
 - (void)enclosingScrollViewFrameDidChanged:(NSNotification *)noti {
+    NSLog(@"ScrollListDocument EnclosingScrollView Frame Did Changed");
     self.mWidth = NSWidth(self.enclosingScrollView.frame);
     self.mHeight = NSHeight(self.enclosingScrollView.frame);
 }

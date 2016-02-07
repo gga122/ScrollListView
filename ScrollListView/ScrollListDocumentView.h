@@ -15,7 +15,12 @@
 
 @interface ScrollListDocumentView : NSView
 
+/**
+ * @brief Register/Remove View Notifications
+ * In method 'registerViewNotifications' will default call 'unRegisterViewNotifications' at first
+ */
 - (void)registerViewNotifications;
+- (void)unRegisterViewNotifications;
 
 
 @end

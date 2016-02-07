@@ -94,7 +94,7 @@
 			children = (
 				BAFAFF141BF394E9008C1FFD /* Common */,
 				BA0239A01BF0FADD0029B062 /* ViewContainer */,
-				BA0239991BF0ED520029B062 /* CateGory */,
+				BA0239991BF0ED520029B062 /* Category */,
 				BA0239951BF0E1320029B062 /* ScrollListCell */,
 				BA02398C1BF0E01A0029B062 /* ScrollListView.h */,
 				BA02398D1BF0E01A0029B062 /* ScrollListView.m */,
@@ -115,13 +115,13 @@
 			name = ScrollListCell;
 			sourceTree = "<group>";
 		};
-		BA0239991BF0ED520029B062 /* CateGory */ = {
+		BA0239991BF0ED520029B062 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				BA02399A1BF0ED790029B062 /* NSIndexPath+ScrollListView.h */,
 				BA02399B1BF0ED790029B062 /* NSIndexPath+ScrollListView.m */,
 			);
-			name = CateGory;
+			name = Category;
 			sourceTree = "<group>";
 		};
 		BA0239A01BF0FADD0029B062 /* ViewContainer */ = {
